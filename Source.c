@@ -15,7 +15,7 @@ void Usage()
 	exit(1);
 }
 
-void interval_puts(char* left, const char* right)  // Вывод строки
+void interval_puts(char* left, const char* right)  // Р’С‹РІРѕРґ СЃС‚СЂРѕРєРё
 {
 	for (char* i = left; i != right + 1; ++i)
 	{
@@ -24,7 +24,7 @@ void interval_puts(char* left, const char* right)  // Вывод строки
 	putchar('\n');
 }
 
-int comparison(const char* Lhs, const char* Rhs, const size_t size)  // Сравнение строк
+int comparison(const char* Lhs, const char* Rhs, const size_t size)  // РЎСЂР°РІРЅРµРЅРёРµ СЃС‚СЂРѕРє
 {
 	size_t i;
 	for (i = 0; i < size; ++i)
@@ -40,7 +40,7 @@ int comparison(const char* Lhs, const char* Rhs, const size_t size)  // Сравнени
 void increment_row(char** right, char** left)
 {
 	int flag = 0;
-	for (char* j = *right; j != (*left - 1); --j)  // Инкремент промежуточной строки
+	for (char* j = *right; j != (*left - 1); --j)  // РРЅРєСЂРµРјРµРЅС‚ РїСЂРѕРјРµР¶СѓС‚РѕС‡РЅРѕР№ СЃС‚СЂРѕРєРё
 	{
 		if (++(*j) > 'z')
 		{
@@ -62,30 +62,30 @@ void kernel(char* from, char* to)
 	const size_t size_to = strlen(to);
 	const size_t size_from = strlen(from);
 
-	char* mem = (char*)malloc(size_to + 1);  // Выделяем память для промежуточной строки
+	char* mem = (char*)malloc(size_to + 1);  // Р’С‹РґРµР»СЏРµРј РїР°РјСЏС‚СЊ РґР»СЏ РїСЂРѕРјРµР¶СѓС‚РѕС‡РЅРѕР№ СЃС‚СЂРѕРєРё
 	char* inter_line = mem;
 	memset(inter_line, 0, size_to + 1);
 
 	char* left =
 		inter_line +
-		(size_to - size_from);  // Ставим указатели на начало и конец промежуточной строки
+		(size_to - size_from);  // РЎС‚Р°РІРёРј СѓРєР°Р·Р°С‚РµР»Рё РЅР° РЅР°С‡Р°Р»Рѕ Рё РєРѕРЅРµС† РїСЂРѕРјРµР¶СѓС‚РѕС‡РЅРѕР№ СЃС‚СЂРѕРєРё
 
 	char* right = inter_line + size_to - 1;
-	memcpy(left, from, size_from);  // Переносим начальную точку в промежуточную строку
+	memcpy(left, from, size_from);  // РџРµСЂРµРЅРѕСЃРёРј РЅР°С‡Р°Р»СЊРЅСѓСЋ С‚РѕС‡РєСѓ РІ РїСЂРѕРјРµР¶СѓС‚РѕС‡РЅСѓСЋ СЃС‚СЂРѕРєСѓ
 
-	interval_puts(left, right);  // вывод начальной строки
+	interval_puts(left, right);  // РІС‹РІРѕРґ РЅР°С‡Р°Р»СЊРЅРѕР№ СЃС‚СЂРѕРєРё
 
 	int bias;
 	while (((bias = comparison(to, inter_line, right - inter_line + 1)) !=
-			right - inter_line + 1))  // Пока промежуточная не равна конечной
+			right - inter_line + 1))  // РџРѕРєР° РїСЂРѕРјРµР¶СѓС‚РѕС‡РЅР°СЏ РЅРµ СЂР°РІРЅР° РєРѕРЅРµС‡РЅРѕР№
 	{
 		to += bias;
-		inter_line += bias;  // Сдвиг указателей на число байт которые равны (чтобы не
-							 // было повторного сравнения)
+		inter_line += bias;  // РЎРґРІРёРі СѓРєР°Р·Р°С‚РµР»РµР№ РЅР° С‡РёСЃР»Рѕ Р±Р°Р№С‚ РєРѕС‚РѕСЂС‹Рµ СЂР°РІРЅС‹ (С‡С‚РѕР±С‹ РЅРµ
+							 // Р±С‹Р»Рѕ РїРѕРІС‚РѕСЂРЅРѕРіРѕ СЃСЂР°РІРЅРµРЅРёСЏ)
 
 		increment_row(&right, &left);
 
-		interval_puts(left, right);  // Вывод промежуточной строки
+		interval_puts(left, right);  // Р’С‹РІРѕРґ РїСЂРѕРјРµР¶СѓС‚РѕС‡РЅРѕР№ СЃС‚СЂРѕРєРё
 	}
 
 	free(mem);
@@ -97,7 +97,7 @@ int main(int argc, char** argv)
 	char* to = NULL;
 
 	int opt_idx = 1;
-	for (; opt_idx < argc; ++opt_idx)  // Парсим аргументы командной строки
+	for (; opt_idx < argc; ++opt_idx)  // РџР°СЂСЃРёРј Р°СЂРіСѓРјРµРЅС‚С‹ РєРѕРјР°РЅРґРЅРѕР№ СЃС‚СЂРѕРєРё
 	{
 		if (strnlen(argv[opt_idx], 2) < 2 || argv[opt_idx][0] != '-' ||
 			argv[opt_idx][1] != '-')
@@ -135,7 +135,7 @@ int main(int argc, char** argv)
 		Usage();
 	}
 
-	kernel(from, to);  // Основная функция
+	kernel(from, to);  // РћСЃРЅРѕРІРЅР°СЏ С„СѓРЅРєС†РёСЏ
 
 	return EXIT_SUCCESS;
 }
